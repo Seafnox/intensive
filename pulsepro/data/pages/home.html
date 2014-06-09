@@ -1,0 +1,42 @@
+<?
+// -- сборка utm-меток для Джастклика
+function prepareTag() {
+	$params = array('utm_medium','utm_source','utm_campaign');
+	$parts = array();
+	foreach($params as $field)
+		if(isset($_GET[$field])){
+			$value = strip_tags($_GET[$field]);
+			$value = htmlspecialchars($value);
+			$parts[] = $value;
+		}
+	if(empty($parts))
+		return $_SERVER['HTTP_HOST'];
+	else
+		return implode('|',$parts);
+}
+$tag = prepareTag();
+// --
+
+// -- установка таймера
+$now = time();
+$interval = 174 * 60 * 60;
+if(isset($_COOKIE['time_start']) && $_COOKIE['time_start'] > $now - $interval)
+	$diff = $_COOKIE['time_start'] + $interval - $now;
+else{
+	$diff = $interval;
+	setcookie('time_start', $now, $now + $interval);
+}
+// --
+
+$page_title = "От 100 000 до 300 000 рублей прибыли в интернет-магазине | Бизнес-школа Имсайдер";
+$page_desc = "От 100 000 до 300 000 рублей прибыли в интернет-магазине | Бизнес-школа Имсайдер"; 
+
+include($_SERVER["DOCUMENT_ROOT"] . "/pulsepro/data/blocks/home/header.html");
+
+include($_SERVER["DOCUMENT_ROOT"] . "/pulsepro/data/blocks/home/100x.html");
+include($_SERVER["DOCUMENT_ROOT"] . "/pulsepro/data/blocks/home/video.html");
+include($_SERVER["DOCUMENT_ROOT"] . "/pulsepro/data/blocks/home/tariff-get-plan.html");
+
+include($_SERVER["DOCUMENT_ROOT"] . "/pulsepro/data/blocks/home/home.html");
+include($_SERVER["DOCUMENT_ROOT"] . "/pulsepro/data/blocks/home/footer.html");
+?>
