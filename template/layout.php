@@ -53,6 +53,8 @@
 	<script type="text/javascript" src="template/js/jquery.countdown.js"></script>
 	<script type="text/javascript" src="template/js/jquery.countdown-ru.js"></script>
 	<script type="text/javascript" src="template/js/script.js"></script>
+
+    <script type="text/javascript" src="//cdn.sublimevideo.net/js/5pi32zdd.js"></script>
 </head>
 <body>
 
